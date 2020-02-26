@@ -1,0 +1,28 @@
+<h2 class="title">My Contacts</h2>
+
+<div class="newContact">
+    <input #contactName placeholder="Type New Contact" />
+    <button (click)="add(contactName.value); contactName.value=''">
+      Add Contact
+    </button>
+</div>
+
+<div id="search-component">
+  <h4 id="search-title"><label for="search-box">Contacts Search</label></h4>
+
+  <input #searchBox id="search-box" (input)="search(searchBox.value)" placeholder="type to search..."/>
+
+  <ul class="search-result">
+    <li *ngFor="let contact of contacts$ | async" >
+        {{contact.name}}
+    </li>
+  </ul>
+</div>
+
+<ul class="contacts">
+    <li *ngFor="let contact of contacts"> 
+    <span class="badge">{{contact.id}}</span> {{contact.name}}
+    <button class="delete" title="delete contact"
+            (click)="delete(contact)">delete</button>
+  </li>
+</ul>
